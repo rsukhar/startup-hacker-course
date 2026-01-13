@@ -9,7 +9,10 @@
         </div>
 
         <div class="book-info">
-          <h2 class="title">{{ book.title }}</h2>
+          <div class="title-wrapper">
+            <h2 class="title">{{ book.title }}</h2>
+            <span v-if="book.isAdult" class="adult-badge">18+</span>
+          </div>
           <p class="genre">{{ book.genre }}</p>
 
           <div class="rating">
@@ -37,6 +40,7 @@ import martinEden from "./assets/books/martin-eden.jpg";
 import flowersForAlgernon from "./assets/books/flowers-for-algernon.jpg";
 import alchemist from "./assets/books/alchemist.jpg";
 import grokkingAlgorithms from "./assets/books/grokking-algorithms.jpg";
+import nightfall from "./assets/books/nightfall.jpg";
 
 const books = ref([
   {
@@ -46,6 +50,7 @@ const books = ref([
       "Роман о парне из рабочего класса, который преодолевает социальные барьеры, становясь известным писателем. Все это он делает ради любви, но в итоге разочаровывается в том обществе в котором живет та, ради которой он все это делал",
     genre: "Классическая литература",
     cover: martinEden,
+    isAdult: false,
     rating: 5,
   },
   {
@@ -55,16 +60,18 @@ const books = ref([
       "История про умственно отсталого уборщика Чарли, который соглашается на экспериментальную операцию по повышению интеллекта.",
     genre: "Научная фантастика",
     cover: flowersForAlgernon,
+    isAdult: false,
     rating: 4.5,
   },
   {
     id: 3,
-    title: "Алхимик",
+    title: "Сумрак",
     description:
-      "Притча о пастухе Сантьяго, который отправляется в путешествие через пустыню в поисках спрятанного сокровища и постигает истинную судьбу.",
-    genre: "Философский роман",
-    cover: alchemist,
-    rating: 4,
+      "История студентки, которая влюбляется в своего профессора и вовлекается в запретные отношения",
+    genre: "Эротический роман",
+    cover: nightfall,
+    isAdult: true,
+    rating: 4.5,
   },
   {
     id: 4,
@@ -73,6 +80,17 @@ const books = ref([
       "Руководство на Python по основным алгоритмам и структурам данных.",
     genre: "Компьютерная литература",
     cover: grokkingAlgorithms,
+    isAdult: false,
+    rating: 4,
+  },
+  {
+    id: 5,
+    title: "Алхимик",
+    description:
+      "Притча о пастухе Сантьяго, который отправляется в путешествие через пустыню в поисках спрятанного сокровища и постигает истинную судьбу.",
+    genre: "Философский роман",
+    cover: alchemist,
+    isAdult: false,
     rating: 4,
   },
 ]);
@@ -167,6 +185,14 @@ h1 {
   gap: 8px;
 }
 
+.title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 .title {
   margin: 0;
   font-size: 20px;
@@ -174,6 +200,17 @@ h1 {
   color: #111827;
   line-height: 1.3;
   text-align: center;
+}
+
+.adult-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  background-color: #ef4444;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 4px;
+  line-height: 1.4;
 }
 
 .genre {
